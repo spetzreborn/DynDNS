@@ -39,7 +39,10 @@ func NewConfig(configFile *string) (*Config, error) {
 
 	for _, item := range config.Items {
 		//TODO Use lookup table for ClientTypes
-		if item.Client.ClientType != "AtlasProbe" {
+		switch item.Client.ClientType {
+		case "AtlasProbe":
+		case "IP":
+		default:
 			return nil, errors.New("not an correct ClientType: " + item.Client.ClientType)
 		}
 	}

@@ -31,6 +31,8 @@ func main() {
 		switch item.Client.ClientType {
 		case "AtlasProbe":
 			c = new(client.AtlasProbe)
+		case "IP":
+			c = new(client.IP)
 		default:
 			log.Fatalf("No such client type: %s\n", item.Client.ClientType)
 		}

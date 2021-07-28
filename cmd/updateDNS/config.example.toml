@@ -5,3 +5,11 @@
         ClientConfig = "1234"
     [Items.Provider]
         ProviderType = ""
+
+[[Items]]
+    Record = "fobar2"
+    [Items.Client]
+        ClientType = "IP"
+        ClientConfig = "127.0.0.1"
+    [Items.Provider]
+        ProviderType = ""
