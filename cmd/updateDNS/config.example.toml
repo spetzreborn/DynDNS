@@ -1,0 +1,7 @@
+[[Items]]
+    Record = "fobar"
+    [Items.Client]
+        ClientType = "AtlasProbe"
+        ClientConfig = "1234"
+    [Items.Provider]
+        ProviderType = ""

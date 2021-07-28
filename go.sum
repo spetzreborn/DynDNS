@@ -1,0 +1,4 @@
+github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ=
+github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
+github.com/stockholmuniversity/goversionflag v0.0.0-20190206151105-e281adb9e248 h1:+JtYHOdikSwDXXd1lHKBzyDjR/umE0MfQAkz4x1rlyY=
+github.com/stockholmuniversity/goversionflag v0.0.0-20190206151105-e281adb9e248/go.mod h1:lrPZKm//GzZ2QGKkQzmyyOxtpYJT2sSPOWHea4QyzEM=
