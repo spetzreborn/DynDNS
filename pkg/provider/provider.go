@@ -11,7 +11,7 @@ type Provider interface {
 	SetARecord(string, net.IP) (err error)
 }
 
-// ProviderTypes is a lookup table for avaiable types of clients, and which stuct they refer to.
+// ProviderTypes is a lookup table for avaiable types of providers, and which stuct they refer to.
 // New provider must be added to the init function, as it is used both to verify the configuration file but also to return the correct structs in the main program loop.
 var ProviderTypes = map[string]Provider{}
 
