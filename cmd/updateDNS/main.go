@@ -25,12 +25,9 @@ func main() {
 		log.Fatalln("error when parsing configuration file: " + err.Error())
 	}
 
-	var c client.Client
-	var p provider.Provider
-
 	for _, item := range config.Items {
-		c = client.ClientTypes[item.Client.ClientType]
-		p = provider.ProviderTypes[item.Provider.ProviderType]
+		c := client.ClientTypes[item.Client.ClientType]
+		p := provider.ProviderTypes[item.Provider.ProviderType]
 
 		err := c.Init(item.Client.ClientConfig)
 		if err != nil {
@@ -42,7 +39,21 @@ func main() {
 			log.Fatalf("could not initiate provider for %s: %s", item.Record, err.Error())
 		}
 
-		fmt.Println(c.GetIPv4().String())
+		currentIP, err := p.GetARecord(item.Record)
+		if err != nil {
+			log.Printf("could not get A record for %s... skipping\n", item.Record)
+			continue
+		}
+		if currentIP == nil {
+			//TODO Print if verbose?
+			fmt.Printf("no current A record for %s setting new: %s\n", item.Record, c.GetIPv4().String())
+			p.SetARecord(item.Record, c.GetIPv4())
+		} else if currentIP.String() != c.GetIPv4().String() {
+			fmt.Printf("updating %s\n", item.Record)
+			p.SetARecord(item.Record, c.GetIPv4())
+		} else {
+			fmt.Printf("record %s is already correct\n", item.Record)
+		}
 	}
 
 }
