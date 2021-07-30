@@ -4,7 +4,8 @@
         ClientType = "AtlasProbe"
         ClientConfig = "1234"
     [Items.Provider]
-        ProviderType = ""
+        ProviderType = "Fake"
+        ProviderConfig = ""
 
 [[Items]]
     Record = "fobar2"
@@ -12,4 +13,5 @@
         ClientType = "IP"
         ClientConfig = "127.0.0.1"
     [Items.Provider]
-        ProviderType = ""
+        ProviderType = "Fake"
+        ProviderConfig = ""

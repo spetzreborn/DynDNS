@@ -5,6 +5,7 @@ import (
 
 	"github.com/BurntSushi/toml"
 	client "github.com/spetzreborn/DynDNS/pkg/client"
+	provider "github.com/spetzreborn/DynDNS/pkg/provider"
 )
 
 // Config should be populated from an TOML configuration file.
@@ -42,6 +43,9 @@ func NewConfig(configFile *string) (*Config, error) {
 	for _, item := range config.Items {
 		if _, keyExists := client.ClientTypes[item.Client.ClientType]; !keyExists {
 			return nil, errors.New("not an correct ClientType: " + item.Client.ClientType)
+		}
+		if _, keyExists := provider.ProviderTypes[item.Provider.ProviderType]; !keyExists {
+			return nil, errors.New("not an correct ProviderType: " + item.Provider.ProviderType)
 		}
 	}
 
