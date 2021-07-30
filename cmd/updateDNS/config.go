@@ -4,6 +4,7 @@ import (
 	"errors"
 
 	"github.com/BurntSushi/toml"
+	client "github.com/spetzreborn/DynDNS/pkg/client"
 )
 
 // Config should be populated from an TOML configuration file.
@@ -37,12 +38,9 @@ func NewConfig(configFile *string) (*Config, error) {
 		return nil, errors.New("toml decoding failed: " + err.Error())
 	}
 
+	// Verifiy that all config items have client type that exists.
 	for _, item := range config.Items {
-		//TODO Use lookup table for ClientTypes
-		switch item.Client.ClientType {
-		case "AtlasProbe":
-		case "IP":
-		default:
+		if _, keyExists := client.ClientTypes[item.Client.ClientType]; !keyExists {
 			return nil, errors.New("not an correct ClientType: " + item.Client.ClientType)
 		}
 	}

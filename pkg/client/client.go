@@ -9,3 +9,12 @@ type Client interface {
 	Init(params interface{}) (err error)
 	GetIPv4() net.IP
 }
+
+// ClientTypes is a lookup table for avaiable types of clients, and which stuct they refer to.
+// New clients must be added to the init function, as it is used both to verify the configuration file but also to return the correct structs in the main program loop.
+var ClientTypes = map[string]Client{}
+
+func init() {
+	ClientTypes["AtlasProbe"] = &AtlasProbe{}
+	ClientTypes["IP"] = &IP{}
+}

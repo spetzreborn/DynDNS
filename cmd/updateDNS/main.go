@@ -26,17 +26,10 @@ func main() {
 
 	var c client.Client
 
-	//TODO Use lookup table for ClientTypes
 	for _, item := range config.Items {
-		switch item.Client.ClientType {
-		case "AtlasProbe":
-			c = new(client.AtlasProbe)
-		case "IP":
-			c = new(client.IP)
-		default:
-			log.Fatalf("No such client type: %s\n", item.Client.ClientType)
-		}
-		err = c.Init(item.Client.ClientConfig)
+		c = client.ClientTypes[item.Client.ClientType]
+
+		err := c.Init(item.Client.ClientConfig)
 		if err != nil {
 			log.Fatalf("could not initiate client for %s: %s", item.Record, err.Error())
 		}
