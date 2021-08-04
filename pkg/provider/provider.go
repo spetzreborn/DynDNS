@@ -17,4 +17,5 @@ var ProviderTypes = map[string]Provider{}
 
 func init() {
 	ProviderTypes["Fake"] = &Fake{}
+	ProviderTypes["Glesys"] = &Glesys{}
 }
