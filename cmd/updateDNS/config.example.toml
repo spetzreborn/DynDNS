@@ -15,3 +15,15 @@
     [Items.Provider]
         ProviderType = "Fake"
         ProviderConfig = ""
+
+[[Items]]
+    Record = "fobar3"
+    [Items.Client]
+        ClientType = "IP"
+        ClientConfig = "127.0.0.1"
+    [Items.Provider]
+        ProviderType = "Glesys"
+        [Items.Provider.Config]
+        Project = ""
+        APIKey = ""
+        ApplicationName = ""
