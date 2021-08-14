@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/stockholmuniversity/goversionflag"
 
@@ -25,6 +26,7 @@ func main() {
 		log.Fatalln("error when parsing configuration file: " + err.Error())
 	}
 
+	var exitStatus int
 	for _, item := range config.Items {
 		c := client.ClientTypes[item.Client.ClientType]
 		p := provider.ProviderTypes[item.Provider.ProviderType]
@@ -36,12 +38,14 @@ func main() {
 
 		err = p.Init(item.Provider.ProviderConfig)
 		if err != nil {
-			log.Fatalf("could not initiate provider for %s: %s", item.Record, err.Error())
+			log.Printf("could not initiate provider for %s: %s", item.Record, err.Error())
+			exitStatus = 1
 		}
 
 		currentIP, err := p.GetARecord(item.Record)
 		if err != nil {
 			log.Printf("could not get A record for %s... skipping\n", item.Record)
+			exitStatus = 1
 			continue
 		}
 		if currentIP == nil {
@@ -55,5 +59,5 @@ func main() {
 			fmt.Printf("record %s is already correct\n", item.Record)
 		}
 	}
-
+	os.Exit(exitStatus)
 }

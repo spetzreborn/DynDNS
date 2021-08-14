@@ -18,17 +18,17 @@ type IP struct {
 }
 
 // Init initializes the probe with a given IPv4 addess in string format
-func (i *IP) Init(ip interface{}) (err error) {
-	if _, ok := ip.(string); ok == false {
-		return errors.New("argument must be a string")
+func (i *IP) Init(param map[string]string) (err error) {
+	if _, ok := param["ip"]; ok == false {
+		return errors.New("argument must include a value \"ip\"")
 
 	}
-	ipaddress := net.ParseIP(fmt.Sprintf("%v", ip))
+	ipaddress := net.ParseIP(fmt.Sprintf("%v", param["ip"]))
 	if ipaddress == nil {
-		return fmt.Errorf("%s is not an valid IP address", ip)
+		return fmt.Errorf("%s is not an valid IP address", param["ip"])
 	}
 	if ipaddress.To4() == nil {
-		return fmt.Errorf("%s is not an valid IPv4 address", ip)
+		return fmt.Errorf("%s is not an valid IPv4 address", param["ip"])
 	}
 
 	i.AddressV4 = ipaddress

@@ -23,13 +23,13 @@ type Item struct {
 // Client is the configuration for each client. "How to get the current IP"
 type Client struct {
 	ClientType   string
-	ClientConfig interface{}
+	ClientConfig map[string]string
 }
 
 // Provider is the configuration for each DNS provider. "Where to update DNS records"
 type Provider struct {
 	ProviderType   string
-	ProviderConfig interface{}
+	ProviderConfig map[string]string
 }
 
 // NewConfig returns default configuration with consideration to configuration file.
@@ -39,7 +39,7 @@ func NewConfig(configFile *string) (*Config, error) {
 		return nil, errors.New("toml decoding failed: " + err.Error())
 	}
 
-	// Verifiy that all config items have client type that exists.
+	// Verifiy that all config items have client and provider types that exists.
 	for _, item := range config.Items {
 		if _, keyExists := client.ClientTypes[item.Client.ClientType]; !keyExists {
 			return nil, errors.New("not an correct ClientType: " + item.Client.ClientType)

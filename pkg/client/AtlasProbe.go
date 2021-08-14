@@ -58,19 +58,19 @@ type AtlasProbe struct {
 }
 
 // Init initializes the probe with response from Atlas Probe project
-func (p *AtlasProbe) Init(probeID interface{}) (err error) {
-	if _, ok := probeID.(string); ok == false {
-		return errors.New("argument must be a string")
+func (p *AtlasProbe) Init(param map[string]string) (err error) {
+	if _, ok := param["probeID"]; ok == false {
+		return errors.New("argument must include a value \"probeID\"")
 
 	}
-	if _, err := strconv.Atoi(fmt.Sprintf("%v", probeID)); err != nil {
+	if _, err := strconv.Atoi(fmt.Sprintf("%v", param["probeID"])); err != nil {
 		return errors.New("argument must only be digits")
 	}
 
 	httpClient := http.Client{
 		Timeout: 5 * time.Second,
 	}
-	resp, err := httpClient.Get("https://atlas.ripe.net/api/v2/probes/" + fmt.Sprintf("%v", probeID))
+	resp, err := httpClient.Get("https://atlas.ripe.net/api/v2/probes/" + fmt.Sprintf("%v", param["probeID"]))
 	if err != nil {
 		return err
 	}

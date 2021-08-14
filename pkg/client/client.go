@@ -6,7 +6,7 @@ import "net"
 // This way it is possible to add new techniques to get an IP address from without changing the main code.
 type Client interface {
 	// Init is using empty interface because I don't know any other way to allow different clients to use their own configurations.
-	Init(params interface{}) (err error)
+	Init(params map[string]string) (err error)
 	GetIPv4() net.IP
 }
 

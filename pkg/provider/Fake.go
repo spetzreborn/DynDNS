@@ -16,7 +16,7 @@ type Fake struct {
 }
 
 // Init initializes the fake provider, it does not validate the config or returns any errors.
-func (f *Fake) Init(config interface{}) (err error) {
+func (f *Fake) Init(config map[string]string) (err error) {
 	f.AddressV4 = make(map[string]net.IP)
 	return nil
 }

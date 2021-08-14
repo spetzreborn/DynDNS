@@ -6,7 +6,7 @@ import "net"
 // This way it is possible to add new providers without changing the main code.
 type Provider interface {
 	// Init is using empty interface because I don't know any other way to allow different provider to use their own configurations.
-	Init(params interface{}) (err error)
+	Init(params map[string]string) (err error)
 	GetARecord(string) (net.IP, error)
 	SetARecord(string, net.IP) (err error)
 }
