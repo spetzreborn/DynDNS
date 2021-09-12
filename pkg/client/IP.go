@@ -19,7 +19,7 @@ type IP struct {
 
 // Init initializes the probe with a given IPv4 addess in string format
 func (i *IP) Init(param map[string]string) (err error) {
-	if _, ok := param["ip"]; ok == false {
+	if _, ok := param["ip"]; !ok {
 		return errors.New("argument must include a value \"ip\"")
 
 	}

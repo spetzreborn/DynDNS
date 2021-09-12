@@ -59,7 +59,7 @@ type AtlasProbe struct {
 
 // Init initializes the probe with response from Atlas Probe project
 func (p *AtlasProbe) Init(param map[string]string) (err error) {
-	if _, ok := param["probeID"]; ok == false {
+	if _, ok := param["probeID"]; !ok {
 		return errors.New("argument must include a value \"probeID\"")
 
 	}
