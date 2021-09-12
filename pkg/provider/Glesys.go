@@ -48,7 +48,7 @@ func (g Glesys) GetARecord(fqdn string) (net.IP, error) {
 	return net.ParseIP(g.AddressV4), nil
 }
 
-// SetARecord returns the IP address for the FQDN
+// SetARecord set the IP address for the FQDN
 func (g *Glesys) SetARecord(fqdn string, ip net.IP) error {
-	return errors.New("Cant set A record")
+	return errors.New("cant set A record")
 }

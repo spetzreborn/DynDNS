@@ -2,7 +2,7 @@ package provider
 
 /*
 
-Fake is a fake DNS provider that returns nilfor all records if not set otherwise with SetARecord().
+Fake is a fake DNS provider that returns nil for all records if not set otherwise with SetARecord().
 
 */
 
