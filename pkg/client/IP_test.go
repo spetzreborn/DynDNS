@@ -19,11 +19,6 @@ func TestIPInit(t *testing.T) {
 			expectedErr: false,
 		},
 		{
-			key:         "Wrong key",
-			value:       "127.0.0.1",
-			expectedErr: true,
-		},
-		{
 			key:         "ip",
 			value:       "127", // Not an IP,
 			expectedErr: true,
@@ -40,7 +35,7 @@ func TestIPInit(t *testing.T) {
 		param[test.key] = test.value
 
 		var i IP
-		err := i.Init(param)
+		err := i.Init(test.value)
 
 		if !test.expectedErr && err != nil {
 			t.Errorf("got %q, wanted error %t", err, test.expectedErr)
@@ -53,13 +48,15 @@ func TestIPInit(t *testing.T) {
 }
 
 func TestIPGetIPv4(t *testing.T) {
-	var i IP
-	m := make(map[string]string)
-	m["ip"] = "127.0.0.1"
-	i.Init(m)
+	t.Run("tt.name", func(t *testing.T) {
+		var i IP
 
-	ip := i.GetIPv4()
-	if ip.String() != m["ip"] {
-		t.Errorf("got %q, wanted %q", ip.String(), m["ip"])
-	}
+		ip := "127.0.0.1"
+		i.Init(ip)
+
+		getip := i.GetIPv4()
+		if getip.String() != ip {
+			t.Errorf("got %q, wanted %q", getip.String(), ip)
+		}
+	})
 }

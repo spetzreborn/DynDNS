@@ -28,7 +28,7 @@ func main() {
 
 	var exitStatus int
 	for _, item := range config.Items {
-		c := client.ClientTypes[item.Client.ClientType]
+		c := client.New(item.Client.ClientType)
 		p := provider.ProviderTypes[item.Provider.ProviderType]
 
 		err := c.Init(item.Client.ClientConfig)
@@ -51,10 +51,10 @@ func main() {
 		if currentIP == nil {
 			//TODO Print if verbose?
 			fmt.Printf("no current A record for %s setting new: %s\n", item.Record, c.GetIPv4().String())
-			p.SetARecord(item.Record, c.GetIPv4())
+			p.SetARecord(item.Record, *c.GetIPv4())
 		} else if currentIP.String() != c.GetIPv4().String() {
 			fmt.Printf("updating %s\n", item.Record)
-			p.SetARecord(item.Record, c.GetIPv4())
+			p.SetARecord(item.Record, *c.GetIPv4())
 		} else {
 			fmt.Printf("record %s is already correct\n", item.Record)
 		}

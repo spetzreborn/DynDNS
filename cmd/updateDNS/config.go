@@ -23,7 +23,7 @@ type Item struct {
 // Client is the configuration for each client. "How to get the current IP"
 type Client struct {
 	ClientType   string
-	ClientConfig map[string]string
+	ClientConfig string
 }
 
 // Provider is the configuration for each DNS provider. "Where to update DNS records"
