@@ -21,12 +21,9 @@ func (f *Fake) Init(config map[string]string) (err error) {
 	return nil
 }
 
-// GetARecord returns the IP address for the FQDN
+// GetARecord always returns the 1.2.3.4 IP address for any FQDN.
 func (f Fake) GetARecord(fqdn string) (net.IP, error) {
-	if _, exists := f.AddressV4[fqdn]; !exists {
-		return nil, nil
-	}
-	return f.AddressV4[fqdn], nil
+	return net.IPv4(1, 2, 3, 4), nil
 }
 
 // SetARecord returns the IP address for the FQDN

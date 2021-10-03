@@ -28,7 +28,7 @@ func main() {
 
 	var exitStatus int
 	for _, item := range config.Items {
-		c := client.ClientTypes[item.Client.ClientType]
+		c := client.New(item.Client.ClientType)
 		p := provider.ProviderTypes[item.Provider.ProviderType]
 
 		err := c.Init(item.Client.ClientConfig)

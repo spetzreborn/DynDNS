@@ -1,3 +1,4 @@
 cmd/updateDNS/config.toml
 cmd/updateDNS/updateDNS
 *.swp
+.vscode
