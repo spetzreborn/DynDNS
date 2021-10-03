@@ -55,7 +55,7 @@ func TestAtlasClient_getIPFromProbe(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			c := AtlasClient{
 				httpClient: tt.fields.httpClient,
-				addressV4:  &tt.fields.addressV4,
+				addressV4:  tt.fields.addressV4,
 			}
 			got, err := c.getIPFromProbe(tt.args.probeID)
 			if (err != nil) != tt.wantErr {

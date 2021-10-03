@@ -63,7 +63,7 @@ type IHTTPClient interface {
 
 type AtlasClient struct {
 	httpClient IHTTPClient
-	addressV4  *net.IP
+	addressV4  net.IP
 }
 
 // Init initializes the probe with response from Atlas Probe project
@@ -77,7 +77,7 @@ func (c *AtlasClient) Init(probeID string) error {
 		return err
 	}
 	ip := net.ParseIP(*ipv4)
-	c.addressV4 = &ip
+	c.addressV4 = ip
 	return nil
 }
 
@@ -97,6 +97,6 @@ func (c *AtlasClient) getIPFromProbe(probeID string) (*string, error) {
 }
 
 // GetIPv4 returns the IPv4 address for the probe
-func (c *AtlasClient) GetIPv4() *net.IP {
+func (c *AtlasClient) GetIPv4() net.IP {
 	return c.addressV4
 }

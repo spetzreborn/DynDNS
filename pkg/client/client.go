@@ -7,7 +7,7 @@ import "net"
 type IClient interface {
 	// Init is using empty interface because I don't know any other way to allow different clients to use their own configurations.
 	Init(param string) error
-	GetIPv4() *net.IP
+	GetIPv4() net.IP
 }
 
 type Factory struct {
@@ -35,6 +35,6 @@ func (c *Factory) Init(params string) error {
 	return nil
 }
 
-func (c *Factory) GetIPv4() *net.IP {
+func (c *Factory) GetIPv4() net.IP {
 	return c.client.GetIPv4()
 }

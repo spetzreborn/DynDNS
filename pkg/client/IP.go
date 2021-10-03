@@ -30,6 +30,6 @@ func (i *IP) Init(param string) error {
 }
 
 // GetIPv4 returns the IPv4 address for the probe
-func (i IP) GetIPv4() *net.IP {
-	return &i.addressV4
+func (i IP) GetIPv4() net.IP {
+	return i.addressV4
 }
